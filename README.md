@@ -1,11 +1,8 @@
 # Plano de Estudos – Transpetro 2026 – Ciência de Dados (Ênfase 8)
 
 **Prova:** domingo, 29/11/2026 · **Banca:** Fundação Cesgranrio · **Edital:** nº 04 – TRANSPETRO/PSP/TERRA/NÍVEL SUPERIOR 2026.4
-**Hoje:** 07/09/2026 · **Tempo restante:** 83 dias = 12 semanas (11 completas + semana da prova)
-**Carga disponível:** 2h (seg–sex) + 6h (sáb) = **16h/semana ≈ 180h úteis até a prova**
-
-> ⚠️ **INSCRIÇÃO ENCERRA EM 14/09/2026** (domingo que vem). Taxa R$ 117,00, no site www.cesgranrio.org.br.
-> Faça isso antes de qualquer sessão de estudo.
+**Hoje:** 20/09/2026 · **Início do plano:** segunda, 21/09/2026 · **10 semanas até a prova**
+**Carga disponível:** 2h (seg–sex) + 6h (sáb) = **16h/semana ≈ 160h úteis até a prova**
 
 ---
 
@@ -14,7 +11,7 @@
 | Pasta | O que tem | Quando usar |
 |---|---|---|
 | `01-edital/` | PDF oficial + conteúdo programático transcrito literalmente + regras da prova | Consultar sempre que houver dúvida sobre "isso cai?" |
-| `02-plano/` | Estratégia geral, cronograma semana a semana (com datas) e rotina diária | Ler o plano geral 1x; abrir o cronograma toda segunda-feira |
+| `02-plano/01-plano-geral.md` | O plano inteiro: método de estudo + calendário dia a dia (21/09 → 29/11) num único arquivo | Abrir todo dia para ver o que fazer hoje |
 | `03-checklist/` | Todos os tópicos do edital com caixas Teoria / Questões / Revisão | Marcar ao final de cada sessão |
 | `04-questoes/` | Onde achar questões Cesgranrio + modelo de caderno de erros | Todo sábado (bloco de questões) |
 | `05-revisao/` | Formulário rápido (fórmulas e conceitos que mais caem) + modelo de resumo | Revisão de 10 min no início de cada dia; reta final |

@@ -6,10 +6,8 @@ Todos aos sábados, cronometrados em **4h30**, sem consulta, sem celular, cadern
 
 | # | Data | Prova sugerida | Composição |
 |---|---|---|---|
-| 1 | Sáb 31/10 | BNDES 2024 – Analista Ciência de Dados (Cesgranrio) | Prova completa. Se PT/EN da prova não tiverem 10+10, complemente com Transpetro 2023. |
-| 2 | Sáb 07/11 | Petrobras 2024 ou 2025 – ênfase de dados/TI (Cesgranrio) | Prova completa |
-| 3 | Sáb 14/11 | Montado: 50 questões Cesgranrio de Específicos inéditas para você (proporção da tabela abaixo) + 10 PT + 10 EN da Transpetro 2023 | Monte no site de questões com antecedência (sexta) |
-| 4 | Sáb 21/11 | Montado: mesma receita, questões novas. Se preferir, repita a prova do Simulado 1 para medir evolução. | |
+| 1 | Sáb 14/11 | BNDES 2024 – Analista Ciência de Dados (Cesgranrio), ou montado com a proporção abaixo | Prova completa. Se PT/EN não tiverem 10+10, complemente com Transpetro 2023. Monte com antecedência (sexta), se for o caso. |
+| 2 | Sáb 21/11 | Petrobras 2024/2025 – ênfase de dados/TI (Cesgranrio), ou montado com questões novas | Prova completa |
 
 Proporção sugerida para simulado montado (50 específicas): II Estatística 8 · VII Classes de modelos 9 · IX Python/SQL/BI 8 · VI Modelagem 6 · V Preparação 4 · III Dados 4 · VIII NLP 3 · I Matemática 3 · X Visualização 2 · XI+XII Governança 2 · IV Gestão 1.
 
@@ -17,12 +15,10 @@ Proporção sugerida para simulado montado (50 específicas): II Estatística 8 
 
 | # | Data | Específicos (/50) | Português (/10) | Inglês (/10) | Total (/70) | Tempo usado | Em branco | Pior bloco | 2º pior | 3º pior |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 1 | 31/10 | | | | | | | | | |
-| 2 | 07/11 | | | | | | | | | |
-| 3 | 14/11 | | | | | | | | | |
-| 4 | 21/11 | | | | | | | | | |
+| 1 | 14/11 | | | | | | | | | |
+| 2 | 21/11 | | | | | | | | | |
 
-Metas: Simulado 1 ≥ 30/50 e ≥ 12/20 · Simulado 3 ≥ 35/50 e ≥ 14/20. Corte de eliminação: 25/50 e 10/20 (e nenhum zero em PT ou EN).
+Metas: Simulado 1 ≥ 30/50 e ≥ 12/20 · Simulado 2 ≥ 35/50 e ≥ 14/20. Corte de eliminação: 25/50 e 10/20 (e nenhum zero em PT ou EN).
 
 ## Análise pós-simulado (copiar para cada um)
 

@@ -34,7 +34,7 @@ Filtro base: **Banca: Cesgranrio**. Depois um caderno por disciplina:
 | Inglês | Inglês | 150 |
 | Governança / Gestão / Visualização | Governança de Dados, Gestão de Projetos, BI | 60 |
 
-Total ≈ 1.230 questões em 12 semanas ≈ 100/semana. Cabe: 15/dia útil + 40–50 no sábado.
+Total ≈ 1.230 questões em 10 semanas ≈ 120/semana. Cabe: 20/dia útil + 40–50 no sábado.
 
 ## 4. Onde baixar provas completas em PDF (para simulados)
 
