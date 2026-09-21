@@ -1,0 +1,272 @@
+{
+  "meta": {
+    "gerado_em": "2026-09-20",
+    "hoje": "2026-09-20",
+    "prova": "2026-11-29",
+    "dias_para_prova": 70,
+    "semana_atual": 0,
+    "total_semanas": 10
+  },
+  "cobertura": {
+    "geral": {
+      "itens_total": 95,
+      "T": 0.0,
+      "Q": 0.0,
+      "R": 0.0
+    },
+    "por_bloco": [
+      {
+        "bloco": "PT",
+        "nome": "Língua Portuguesa",
+        "itens": 12,
+        "T": 0.0,
+        "Q": 0.0,
+        "R": 0.0
+      },
+      {
+        "bloco": "EN",
+        "nome": "Língua Inglesa",
+        "itens": 2,
+        "T": 0.0,
+        "Q": 0.0,
+        "R": 0.0
+      },
+      {
+        "bloco": "I",
+        "nome": "Matemática",
+        "itens": 5,
+        "T": 0.0,
+        "Q": 0.0,
+        "R": 0.0
+      },
+      {
+        "bloco": "II",
+        "nome": "Probabilidade e Estatística",
+        "itens": 14,
+        "T": 0.0,
+        "Q": 0.0,
+        "R": 0.0
+      },
+      {
+        "bloco": "III",
+        "nome": "Dados e Bases de Dados",
+        "itens": 7,
+        "T": 0.0,
+        "Q": 0.0,
+        "R": 0.0
+      },
+      {
+        "bloco": "IV",
+        "nome": "Gestão de Projetos de Ciência de Dados",
+        "itens": 2,
+        "T": 0.0,
+        "Q": 0.0,
+        "R": 0.0
+      },
+      {
+        "bloco": "V",
+        "nome": "Qualidade e Preparação de Dados",
+        "itens": 7,
+        "T": 0.0,
+        "Q": 0.0,
+        "R": 0.0
+      },
+      {
+        "bloco": "VI",
+        "nome": "Modelagem",
+        "itens": 9,
+        "T": 0.0,
+        "Q": 0.0,
+        "R": 0.0
+      },
+      {
+        "bloco": "VII",
+        "nome": "Classes de Modelos",
+        "itens": 14,
+        "T": 0.0,
+        "Q": 0.0,
+        "R": 0.0
+      },
+      {
+        "bloco": "VIII",
+        "nome": "NLP",
+        "itens": 5,
+        "T": 0.0,
+        "Q": 0.0,
+        "R": 0.0
+      },
+      {
+        "bloco": "IX",
+        "nome": "Programação e Ferramentas",
+        "itens": 10,
+        "T": 0.0,
+        "Q": 0.0,
+        "R": 0.0
+      },
+      {
+        "bloco": "X",
+        "nome": "Visualização, Storytelling e Comunicação",
+        "itens": 4,
+        "T": 0.0,
+        "Q": 0.0,
+        "R": 0.0
+      },
+      {
+        "bloco": "XI",
+        "nome": "Governança e Segurança de Dados",
+        "itens": 1,
+        "T": 0.0,
+        "Q": 0.0,
+        "R": 0.0
+      },
+      {
+        "bloco": "XII",
+        "nome": "Governança, Segurança e IA Responsável",
+        "itens": 3,
+        "T": 0.0,
+        "Q": 0.0,
+        "R": 0.0
+      }
+    ],
+    "historico": [
+      {
+        "date": "2026-09-20",
+        "T": 0.0,
+        "Q": 0.0,
+        "R": 0.0
+      }
+    ]
+  },
+  "questoes": {
+    "total_resolvidas": 0,
+    "total_acertos": 0,
+    "pct_acerto_geral": null,
+    "por_dia": [],
+    "por_semana": [
+      {
+        "semana": 1,
+        "periodo": "21–27/09",
+        "tema": "Fundamentos",
+        "total": 0,
+        "acertos": 0,
+        "pct": null,
+        "horas_feitas": null
+      },
+      {
+        "semana": 2,
+        "periodo": "28/09–04/10",
+        "tema": "Distribuições e métricas",
+        "total": 0,
+        "acertos": 0,
+        "pct": null,
+        "horas_feitas": null
+      },
+      {
+        "semana": 3,
+        "periodo": "05–11/10",
+        "tema": "Bayes, TCL, SQL e preparação de dados",
+        "total": 0,
+        "acertos": 0,
+        "pct": null,
+        "horas_feitas": null
+      },
+      {
+        "semana": 4,
+        "periodo": "12–18/10",
+        "tema": "Inferência e classificadores",
+        "total": 0,
+        "acertos": 0,
+        "pct": null,
+        "horas_feitas": null
+      },
+      {
+        "semana": 5,
+        "periodo": "19–25/10",
+        "tema": "Regressão, ensembles, clustering, Big Data",
+        "total": 0,
+        "acertos": 0,
+        "pct": null,
+        "horas_feitas": null
+      },
+      {
+        "semana": 6,
+        "periodo": "26/10–01/11",
+        "tema": "Álgebra linear, redes neurais, redução de dimensionalidade",
+        "total": 0,
+        "acertos": 0,
+        "pct": null,
+        "horas_feitas": null
+      },
+      {
+        "semana": 7,
+        "periodo": "02–08/11",
+        "tema": "Séries temporais, NLP, Power BI, visualização",
+        "total": 0,
+        "acertos": 0,
+        "pct": null,
+        "horas_feitas": null
+      },
+      {
+        "semana": 8,
+        "periodo": "09–15/11",
+        "tema": "Revisão dos blocos vermelhos + Simulado 1",
+        "total": 0,
+        "acertos": 0,
+        "pct": null,
+        "horas_feitas": null
+      },
+      {
+        "semana": 9,
+        "periodo": "16–22/11",
+        "tema": "Pontos fracos do Simulado 1 + Simulado 2",
+        "total": 0,
+        "acertos": 0,
+        "pct": null,
+        "horas_feitas": null
+      },
+      {
+        "semana": 10,
+        "periodo": "23–29/11",
+        "tema": "Semana da prova (sem conteúdo novo)",
+        "total": 0,
+        "acertos": 0,
+        "pct": null,
+        "horas_feitas": null
+      }
+    ],
+    "por_mes": [],
+    "por_bloco_edital": []
+  },
+  "streak": {
+    "atual": 0,
+    "recorde": 0
+  },
+  "simulados": [
+    {
+      "numero": 1,
+      "data": "2026-11-14",
+      "meta_especificos": 30,
+      "meta_gerais": 12,
+      "especificos": null,
+      "portugues": null,
+      "ingles": null,
+      "status": "pendente"
+    },
+    {
+      "numero": 2,
+      "data": "2026-11-21",
+      "meta_especificos": 35,
+      "meta_gerais": 14,
+      "especificos": null,
+      "portugues": null,
+      "ingles": null,
+      "status": "pendente"
+    }
+  ],
+  "risco_eliminacao": {
+    "zero_pt": false,
+    "zero_en": false,
+    "abaixo_corte_especificos": false,
+    "abaixo_corte_gerais": false
+  }
+}

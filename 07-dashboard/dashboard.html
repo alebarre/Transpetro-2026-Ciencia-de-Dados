@@ -1,0 +1,651 @@
+<title>Sala de Controle</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --bg: #EEF2F1;
+    --surface: #FFFFFF;
+    --surface-2: #E3EAE8;
+    --ink: #16211E;
+    --ink-muted: #59655F;
+    --ink-faint: #8A9490;
+    --border: #D2DBD7;
+    --accent: #BF5B2E;
+    --accent-ink: #FFFFFF;
+    --series-t: #BF5B2E;
+    --series-q: #1B8A6B;
+    --series-r: #5B4EA6;
+    --good: #2F7A4D;
+    --warning: #A67C00;
+    --critical: #B23A2E;
+    --shadow: 0 1px 2px rgba(22,33,30,.06), 0 4px 14px rgba(22,33,30,.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #101E1B;
+      --surface: #172723;
+      --surface-2: #1E332E;
+      --ink: #EAF2EF;
+      --ink-muted: #9FB0AA;
+      --ink-faint: #6C7C76;
+      --border: #2A403A;
+      --accent: #D9713D;
+      --accent-ink: #14201D;
+      --series-t: #D9713D;
+      --series-q: #2FA588;
+      --series-r: #8B7FD1;
+      --good: #4FAF72;
+      --warning: #D1A62E;
+      --critical: #E06356;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 4px 18px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #101E1B;
+    --surface: #172723;
+    --surface-2: #1E332E;
+    --ink: #EAF2EF;
+    --ink-muted: #9FB0AA;
+    --ink-faint: #6C7C76;
+    --border: #2A403A;
+    --accent: #D9713D;
+    --accent-ink: #14201D;
+    --series-t: #D9713D;
+    --series-q: #2FA588;
+    --series-r: #8B7FD1;
+    --good: #4FAF72;
+    --warning: #D1A62E;
+    --critical: #E06356;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 4px 18px rgba(0,0,0,.35);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    padding-inline: 16px;
+    padding-block: 20px 48px;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+  .num { font-family: "IBM Plex Mono", ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+
+  header.topbar { display: flex; flex-direction: column; gap: 2px; }
+  .eyebrow {
+    font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--ink-muted); font-weight: 600;
+  }
+  h1 {
+    font-family: "Big Shoulders Display", "IBM Plex Sans", sans-serif;
+    font-weight: 800; font-size: clamp(32px, 6vw, 44px); line-height: 1;
+    margin: 2px 0 0; letter-spacing: .01em; text-wrap: balance;
+  }
+
+  /* KPI strip */
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+  .kpi-tile {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px 16px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 4px;
+  }
+  .kpi-tile.risk { background: color-mix(in srgb, var(--critical) 12%, var(--surface)); border-color: var(--critical); }
+  .kpi-label { font-size: 11px; text-transform: uppercase; letter-spacing: .07em; color: var(--ink-muted); font-weight: 600; }
+  .kpi-value { font-family: "Big Shoulders Display", sans-serif; font-weight: 800; font-size: 34px; line-height: 1; color: var(--ink); }
+  .kpi-tile.risk .kpi-value { color: var(--critical); }
+  .kpi-sub { font-size: 12px; color: var(--ink-muted); }
+  .mini-bars { display: flex; flex-direction: column; gap: 3px; margin-top: 4px; }
+  .mini-bar-row { display: flex; align-items: center; gap: 6px; font-size: 10.5px; color: var(--ink-muted); }
+  .mini-bar-row .chip { width: 12px; text-align: center; font-weight: 700; }
+  .mini-bar-track { flex: 1; height: 5px; border-radius: 3px; background: var(--surface-2); overflow: hidden; }
+  .mini-bar-fill { height: 100%; border-radius: 3px; }
+  .mini-bar-val { width: 30px; text-align: right; font-family: "IBM Plex Mono", monospace; }
+  .risk-list { font-size: 12.5px; color: var(--critical); line-height: 1.5; }
+
+  /* Tabs */
+  nav.tabs { display: flex; gap: 4px; background: var(--surface-2); padding: 4px; border-radius: 10px; width: fit-content; max-width: 100%; overflow-x: auto; }
+  .tab-btn {
+    font: inherit; font-weight: 600; font-size: 13.5px; color: var(--ink-muted);
+    background: transparent; border: none; padding: 8px 16px; border-radius: 7px; cursor: pointer;
+    white-space: nowrap;
+  }
+  .tab-btn.active { background: var(--surface); color: var(--ink); box-shadow: var(--shadow); }
+  .tab-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 700px) { .grid2 { grid-template-columns: 1fr; } }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 16px 18px 12px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 10px;
+  }
+  .card h2 { font-size: 14.5px; font-weight: 700; margin: 0; }
+  .card .hint { font-size: 11.5px; color: var(--ink-faint); margin-top: -8px; }
+  .chart-wrap { width: 100%; }
+  .chart-wrap svg { width: 100%; height: auto; display: block; overflow: visible; }
+  .empty-state {
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    color: var(--ink-faint); font-size: 12.5px; min-height: 110px; padding: 10px 20px; line-height: 1.5;
+  }
+  .legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 11.5px; color: var(--ink-muted); }
+  .legend span { display: inline-flex; align-items: center; gap: 5px; }
+  .legend i { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
+
+  table.data-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  table.data-table th { text-align: left; font-size: 10.5px; text-transform: uppercase; letter-spacing: .04em; color: var(--ink-faint); font-weight: 600; padding: 4px 6px; border-bottom: 1px solid var(--border); }
+  table.data-table td { padding: 6px 6px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  table.data-table tr:last-child td { border-bottom: none; }
+  .table-scroll { overflow-x: auto; }
+  .pct-pill { font-family: "IBM Plex Mono", monospace; font-weight: 600; padding: 1px 7px; border-radius: 20px; font-size: 11.5px; white-space: nowrap; }
+  .pct-good { background: color-mix(in srgb, var(--good) 16%, transparent); color: var(--good); }
+  .pct-warn { background: color-mix(in srgb, var(--warning) 18%, transparent); color: var(--warning); }
+  .pct-crit { background: color-mix(in srgb, var(--critical) 16%, transparent); color: var(--critical); }
+  .pct-muted { background: var(--surface-2); color: var(--ink-faint); }
+
+  .bullet-card { display: flex; flex-direction: column; gap: 10px; }
+  .bullet-row { display: flex; flex-direction: column; gap: 4px; }
+  .bullet-row .label-row { display: flex; justify-content: space-between; font-size: 12px; color: var(--ink-muted); }
+  .bullet-track { position: relative; height: 14px; background: var(--surface-2); border-radius: 4px; overflow: visible; }
+  .bullet-fill { position: absolute; inset: 0; border-radius: 4px; width: 0%; }
+  .bullet-tick { position: absolute; top: -3px; bottom: -3px; width: 2px; background: var(--ink); opacity: .55; }
+  .pending-badge { font-size: 11px; color: var(--ink-faint); font-style: italic; }
+  .warn-note { font-size: 11.5px; color: var(--critical); font-weight: 600; }
+
+  footer.foot { text-align: center; font-size: 11px; color: var(--ink-faint); padding-top: 6px; }
+  footer.foot code { font-family: "IBM Plex Mono", monospace; }
+</style>
+
+<div class="wrap">
+  <header class="topbar">
+    <span class="eyebrow">Transpetro 2026 · Ciência de Dados · Cesgranrio</span>
+    <h1>Sala de Controle</h1>
+  </header>
+
+  <section class="kpis" id="kpiStrip"></section>
+
+  <nav class="tabs" id="tabNav">
+    <button class="tab-btn" data-tab="hoje">Hoje</button>
+    <button class="tab-btn" data-tab="semana">Semana</button>
+    <button class="tab-btn" data-tab="mes">Mês</button>
+    <button class="tab-btn" data-tab="edital">Edital</button>
+  </nav>
+
+  <main>
+    <section class="panel" data-panel="hoje" hidden>
+      <div class="grid2">
+        <div class="card">
+          <h2>Últimos 14 dias · % de acerto</h2>
+          <div class="hint">Linha tracejada = meta de checkpoint (60%)</div>
+          <div class="chart-wrap" id="chartHojePct"></div>
+        </div>
+        <div class="card">
+          <h2 id="hojeBlocosTitulo">Blocos de hoje</h2>
+          <div class="table-scroll" id="hojeBlocosTabela"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" data-panel="semana" hidden>
+      <div class="grid2">
+        <div class="card">
+          <h2>Questões por semana</h2>
+          <div class="chart-wrap" id="chartSemanaVol"></div>
+        </div>
+        <div class="card">
+          <h2>% de acerto por semana</h2>
+          <div class="hint">Marcas: checkpoint (S7) e metas dos simulados (S8, S9)</div>
+          <div class="chart-wrap" id="chartSemanaPct"></div>
+        </div>
+      </div>
+      <div class="card" id="cardHoras" style="margin-top:14px"></div>
+    </section>
+
+    <section class="panel" data-panel="mes" hidden>
+      <div class="grid2">
+        <div class="card">
+          <h2>Questões por mês</h2>
+          <div class="chart-wrap" id="chartMesVol"></div>
+        </div>
+        <div class="card">
+          <h2>% de acerto por mês</h2>
+          <div class="chart-wrap" id="chartMesPct"></div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:14px">
+        <h2>Cobertura do edital ao longo do tempo</h2>
+        <div class="legend">
+          <span><i style="background:var(--series-t)"></i>Teoria</span>
+          <span><i style="background:var(--series-q)"></i>Questões</span>
+          <span><i style="background:var(--series-r)"></i>Revisão</span>
+        </div>
+        <div class="chart-wrap" id="chartCoberturaTendencia"></div>
+      </div>
+    </section>
+
+    <section class="panel" data-panel="edital" hidden>
+      <div class="card">
+        <h2>Cobertura por bloco do edital</h2>
+        <div class="legend">
+          <span><i style="background:var(--series-t)"></i>T · teoria vista</span>
+          <span><i style="background:var(--series-q)"></i>Q · ≥10 questões</span>
+          <span><i style="background:var(--series-r)"></i>R · revisado</span>
+        </div>
+        <div class="chart-wrap" id="chartEditalBlocos"></div>
+      </div>
+      <div class="grid2" style="margin-top:14px">
+        <div class="card">
+          <h2>Blocos mais fracos</h2>
+          <div class="hint">% de acerto nas questões já feitas (mín. 5 questões no bloco)</div>
+          <div class="chart-wrap" id="chartBlocosFracos"></div>
+        </div>
+        <div class="card">
+          <h2>Simulados: real vs. meta</h2>
+          <div id="simuladosCards" class="bullet-card"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">Atualizado em <span id="updatedAt" class="num">—</span> · dados gerados por <code>07-dashboard/aggregate.py</code>, não editar dados.json à mão</footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var MESES = { "01":"Jan","02":"Fev","03":"Mar","04":"Abr","05":"Mai","06":"Jun","07":"Jul","08":"Ago","09":"Set","10":"Out","11":"Nov","12":"Dez" };
+  var ROMANOS = ["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII"];
+
+  function fmtDateShort(iso) { var p = iso.split("-"); return p[2] + "/" + p[1]; }
+  function fmtDateFull(iso) { var p = iso.split("-"); return p[2] + " de " + MESES[p[1]] + " de " + p[0]; }
+  function fmtPct(v) { return (v === null || v === undefined) ? "—" : Math.round(v) + "%"; }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+
+  function statusColor(pct, good, warn) {
+    if (pct === null || pct === undefined) return "var(--ink-faint)";
+    if (pct >= good) return "var(--good)";
+    if (pct >= warn) return "var(--warning)";
+    return "var(--critical)";
+  }
+  function pctPillClass(pct, good, warn) {
+    if (pct === null || pct === undefined) return "pct-muted";
+    if (pct >= good) return "pct-good";
+    if (pct >= warn) return "pct-warn";
+    return "pct-crit";
+  }
+
+  function emptyState(msg) { return '<div class="empty-state">' + esc(msg) + "</div>"; }
+
+  // ---------- generic SVG bar chart (single series) ----------
+  function barChart(items, opts) {
+    opts = opts || {};
+    var W = 640, H = opts.height || 190;
+    var padL = 6, padR = 6, padT = 20, padB = 26;
+    var innerW = W - padL - padR, innerH = H - padT - padB;
+    var n = items.length;
+    if (!n) return emptyState(opts.emptyMsg || "Sem dados ainda.");
+    var vals = items.map(opts.value);
+    var target = opts.target;
+    var maxVal = Math.max.apply(null, vals.concat([target || 0, opts.minMax || 1]));
+    var gap = 8;
+    var bw = (innerW - gap * (n - 1)) / n;
+    var base = padT + innerH;
+    var bars = "", labels = "";
+    var maxIdx = vals.indexOf(Math.max.apply(null, vals));
+    for (var i = 0; i < n; i++) {
+      var v = vals[i];
+      var h = maxVal > 0 ? (v / maxVal) * innerH : 0;
+      var x = padL + i * (bw + gap);
+      var y = base - h;
+      var color = opts.colorFn ? opts.colorFn(items[i], v) : "var(--accent)";
+      bars += '<rect x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + Math.max(h, 1.5).toFixed(1) + '" rx="3" fill="' + color + '"/>';
+      var showLabel = (i === maxIdx || i === n - 1) && v > 0;
+      if (showLabel) {
+        bars += '<text x="' + (x + bw / 2).toFixed(1) + '" y="' + (y - 5).toFixed(1) + '" font-size="10.5" text-anchor="middle" fill="var(--ink-muted)" font-family="IBM Plex Mono, monospace">' + (opts.valueLabel ? opts.valueLabel(v) : v) + "</text>";
+      }
+      labels += '<text x="' + (x + bw / 2).toFixed(1) + '" y="' + (base + 16).toFixed(1) + '" font-size="10.5" text-anchor="middle" fill="var(--ink-faint)">' + esc(opts.label(items[i])) + "</text>";
+    }
+    var targetLine = "";
+    if (target) {
+      var ty = base - (target / maxVal) * innerH;
+      targetLine = '<line x1="' + padL + '" x2="' + (W - padR) + '" y1="' + ty.toFixed(1) + '" y2="' + ty.toFixed(1) + '" stroke="var(--ink-faint)" stroke-width="1.5" stroke-dasharray="3,3"/>' +
+        '<text x="' + (W - padR) + '" y="' + (ty - 4).toFixed(1) + '" font-size="10" text-anchor="end" fill="var(--ink-faint)">meta ' + target + (opts.targetSuffix || "") + "</text>";
+    }
+    var axis = '<line x1="' + padL + '" x2="' + (W - padR) + '" y1="' + base + '" y2="' + base + '" stroke="var(--border)" stroke-width="1"/>';
+    return '<svg viewBox="0 0 ' + W + " " + H + '" role="img">' + axis + bars + targetLine + labels + "</svg>";
+  }
+
+  // ---------- generic SVG line chart (1 series, with optional target ticks) ----------
+  function lineChart(points, opts) {
+    opts = opts || {};
+    var W = 640, H = opts.height || 190;
+    var padL = 8, padR = 8, padT = 20, padB = 26;
+    var innerW = W - padL - padR, innerH = H - padT - padB;
+    var valid = points.filter(function (p) { return opts.value(p) !== null && opts.value(p) !== undefined; });
+    if (valid.length < 2) return emptyState(opts.emptyMsg || "Ainda não há pontos suficientes para uma linha.");
+    var n = points.length;
+    var vals = points.map(function (p) { var v = opts.value(p); return v === null || v === undefined ? null : v; });
+    var maxVal = Math.max(100, Math.max.apply(null, vals.filter(function (v) { return v !== null; })));
+    var base = padT + innerH;
+    function xAt(i) { return n === 1 ? padL : padL + (i / (n - 1)) * innerW; }
+    function yAt(v) { return base - (v / maxVal) * innerH; }
+    var path = "", dots = "", lastX, lastY, lastV;
+    var started = false;
+    for (var i = 0; i < n; i++) {
+      if (vals[i] === null) { started = false; continue; }
+      var x = xAt(i), y = yAt(vals[i]);
+      path += (started ? " L " : "M ") + x.toFixed(1) + " " + y.toFixed(1);
+      started = true;
+      lastX = x; lastY = y; lastV = vals[i];
+    }
+    dots += '<circle cx="' + lastX.toFixed(1) + '" cy="' + lastY.toFixed(1) + '" r="4" fill="var(--accent)"/>';
+    dots += '<text x="' + lastX.toFixed(1) + '" y="' + (lastY - 9).toFixed(1) + '" font-size="10.5" text-anchor="middle" fill="var(--ink)" font-family="IBM Plex Mono, monospace">' + Math.round(lastV) + "%</text>";
+    var labels = "";
+    for (var j = 0; j < n; j++) {
+      labels += '<text x="' + xAt(j).toFixed(1) + '" y="' + (base + 16).toFixed(1) + '" font-size="10.5" text-anchor="middle" fill="var(--ink-faint)">' + esc(opts.label(points[j])) + "</text>";
+    }
+    var targets = "";
+    (opts.targets || []).forEach(function (t) {
+      var x = xAt(t.index), y = yAt(t.value);
+      targets += '<line x1="' + (x - 9) + '" x2="' + (x + 9) + '" y1="' + y.toFixed(1) + '" y2="' + y.toFixed(1) + '" stroke="var(--ink-faint)" stroke-width="1.5" stroke-dasharray="2,2"/>';
+      targets += '<text x="' + x + '" y="' + (y - 6).toFixed(1) + '" font-size="9.5" text-anchor="middle" fill="var(--ink-faint)">' + esc(t.label) + "</text>";
+    });
+    var axis = '<line x1="' + padL + '" x2="' + (W - padR) + '" y1="' + base + '" y2="' + base + '" stroke="var(--border)" stroke-width="1"/>';
+    return '<svg viewBox="0 0 ' + W + " " + H + '" role="img">' + axis + targets +
+      '<path d="' + path + '" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
+      dots + labels + "</svg>";
+  }
+
+  // ---------- horizontal grouped bars (3 series: T/Q/R) ----------
+  function editalBlocksChart(blocks) {
+    if (!blocks.length) return emptyState("Nenhum bloco encontrado no checklist.");
+    var W = 640, rowH = 46, labelW = 190;
+    var H = blocks.length * rowH + 10;
+    var barAreaW = W - labelW - 60;
+    var seriesH = 6, seriesGap = 3;
+    var rows = "";
+    blocks.forEach(function (b, i) {
+      var y0 = 10 + i * rowH;
+      var nomeCurto = b.nome.length > 24 ? b.nome.slice(0, 23) + "…" : b.nome;
+      rows += '<text x="0" y="' + (y0 + 12) + '" font-size="11.5" font-weight="700" fill="var(--ink)">' + esc(b.bloco) + "</text>";
+      rows += '<text x="0" y="' + (y0 + 25) + '" font-size="10" fill="var(--ink-faint)">' + esc(nomeCurto) + "</text>";
+      [["T", b.T, "var(--series-t)"], ["Q", b.Q, "var(--series-q)"], ["R", b.R, "var(--series-r)"]].forEach(function (s, si) {
+        var sy = y0 + si * (seriesH + seriesGap);
+        var w = (s[1] / 100) * barAreaW;
+        rows += '<rect x="' + labelW + '" y="' + sy + '" width="' + barAreaW + '" height="' + seriesH + '" rx="2" fill="var(--surface-2)"/>';
+        rows += '<rect x="' + labelW + '" y="' + sy + '" width="' + Math.max(w, s[1] > 0 ? 3 : 0) + '" height="' + seriesH + '" rx="2" fill="' + s[2] + '"/>';
+        rows += '<text x="' + (labelW + barAreaW + 8) + '" y="' + (sy + seriesH) + '" font-size="9.5" fill="var(--ink-faint)" font-family="IBM Plex Mono, monospace">' + Math.round(s[1]) + "%</text>";
+      });
+      if (i < blocks.length - 1) rows += '<line x1="0" x2="' + W + '" y1="' + (y0 + rowH - 4) + '" y2="' + (y0 + rowH - 4) + '" stroke="var(--border)" stroke-width="1"/>';
+    });
+    return '<svg viewBox="0 0 ' + W + " " + H + '" role="img">' + rows + "</svg>";
+  }
+
+  // ---------- horizontal single-series ranking ----------
+  function rankingChart(rows) {
+    if (!rows.length) return emptyState("Ainda não há questões suficientes por bloco (mínimo 5) para identificar pontos fracos.");
+    var W = 640, rowH = 30, labelW = 46;
+    var H = rows.length * rowH + 6;
+    var barAreaW = W - labelW - 46;
+    var svg = "";
+    rows.forEach(function (r, i) {
+      var y = 6 + i * rowH;
+      var w = (r.pct / 100) * barAreaW;
+      var color = statusColor(r.pct, 70, 50);
+      svg += '<text x="0" y="' + (y + 15) + '" font-size="12" font-weight="700" fill="var(--ink)">' + esc(r.bloco) + "</text>";
+      svg += '<rect x="' + labelW + '" y="' + y + '" width="' + barAreaW + '" height="16" rx="3" fill="var(--surface-2)"/>';
+      svg += '<rect x="' + labelW + '" y="' + y + '" width="' + Math.max(w, 3) + '" height="16" rx="3" fill="' + color + '"/>';
+      svg += '<text x="' + (labelW + barAreaW + 6) + '" y="' + (y + 12) + '" font-size="10.5" fill="var(--ink-muted)" font-family="IBM Plex Mono, monospace">' + Math.round(r.pct) + "% (" + r.acertos + "/" + r.total + ")</text>";
+    });
+    return '<svg viewBox="0 0 ' + W + " " + H + '" role="img">' + svg + "</svg>";
+  }
+
+  function sparkline(points) {
+    var vals = points.map(function (p) { return p.pct; }).filter(function (v) { return v !== null && v !== undefined; });
+    if (vals.length < 2) return "";
+    var W = 140, H = 30, pad = 2;
+    var max = Math.max(100, Math.max.apply(null, vals));
+    var min = 0;
+    var n = vals.length;
+    var path = "";
+    vals.forEach(function (v, i) {
+      var x = pad + (i / (n - 1)) * (W - pad * 2);
+      var y = H - pad - ((v - min) / (max - min || 1)) * (H - pad * 2);
+      path += (i === 0 ? "M " : "L ") + x.toFixed(1) + " " + y.toFixed(1);
+    });
+    var lastX = pad + (W - pad * 2), lastY = H - pad - ((vals[n - 1] - min) / (max - min || 1)) * (H - pad * 2);
+    return '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" height="30" style="display:block;margin-top:4px" role="img">' +
+      '<path d="' + path + '" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<circle cx="' + lastX.toFixed(1) + '" cy="' + lastY.toFixed(1) + '" r="2.4" fill="var(--accent)"/></svg>';
+  }
+
+  // ---------------------------------------------------------------
+  function render(d) {
+    document.getElementById("updatedAt").textContent = fmtDateFull(d.meta.gerado_em || d.meta.hoje);
+
+    renderKpis(d);
+    renderHoje(d);
+    renderSemana(d);
+    renderMes(d);
+    renderEdital(d);
+  }
+
+  function renderKpis(d) {
+    var el = document.getElementById("kpiStrip");
+    var html = "";
+
+    html += '<div class="kpi-tile"><div class="kpi-label">Dias para a prova</div>' +
+      '<div class="kpi-value num">' + d.meta.dias_para_prova + "</div>" +
+      '<div class="kpi-sub">Prova em ' + fmtDateFull(d.meta.prova) + " · Semana " + (d.meta.semana_atual || "–") + "/" + d.meta.total_semanas + "</div></div>";
+
+    var g = d.cobertura.geral;
+    html += '<div class="kpi-tile"><div class="kpi-label">Edital coberto</div>' +
+      '<div class="kpi-value num">' + fmtPct(g.T) + "</div>" +
+      '<div class="kpi-sub">' + g.itens_total + " itens no total</div>" +
+      '<div class="mini-bars">' +
+      miniBarRow("T", g.T, "var(--series-t)") + miniBarRow("Q", g.Q, "var(--series-q)") + miniBarRow("R", g.R, "var(--series-r)") +
+      "</div></div>";
+
+    var q = d.questoes;
+    html += '<div class="kpi-tile"><div class="kpi-label">Acerto geral</div>' +
+      '<div class="kpi-value num">' + fmtPct(q.pct_acerto_geral) + "</div>" +
+      '<div class="kpi-sub">' + q.total_resolvidas + " questões respondidas</div>" +
+      sparkline(q.por_dia.slice(-14)) + "</div>";
+
+    html += '<div class="kpi-tile"><div class="kpi-label">Sequência de estudo</div>' +
+      '<div class="kpi-value num">' + d.streak.atual + "</div>" +
+      '<div class="kpi-sub">dias seguidos · recorde: ' + d.streak.recorde + " dias</div></div>";
+
+    var r = d.risco_eliminacao;
+    var riscos = [];
+    if (r.zero_pt) riscos.push("zero em Português no último simulado");
+    if (r.zero_en) riscos.push("zero em Inglês no último simulado");
+    if (r.abaixo_corte_especificos) riscos.push("Específicos abaixo do corte (25/50)");
+    if (r.abaixo_corte_gerais) riscos.push("Gerais abaixo do corte (10/20)");
+    if (riscos.length) {
+      html += '<div class="kpi-tile risk"><div class="kpi-label">⚠ Risco de eliminação</div>' +
+        '<div class="risk-list">' + riscos.map(esc).join("<br>") + "</div></div>";
+    }
+    el.innerHTML = html;
+  }
+
+  function miniBarRow(letra, val, color) {
+    return '<div class="mini-bar-row"><span class="chip" style="color:' + color + '">' + letra + '</span>' +
+      '<span class="mini-bar-track"><span class="mini-bar-fill" style="width:' + val + "%;background:" + color + '"></span></span>' +
+      '<span class="mini-bar-val">' + Math.round(val) + "%</span></div>";
+  }
+
+  function renderHoje(d) {
+    var recentes = d.questoes.por_dia.slice(-14);
+    document.getElementById("chartHojePct").innerHTML = barChart(recentes, {
+      value: function (p) { return p.pct; },
+      label: function (p) { return fmtDateShort(p.date); },
+      colorFn: function (p, v) { return statusColor(v, 70, 50); },
+      target: 60, targetSuffix: "%",
+      valueLabel: function (v) { return Math.round(v) + "%"; },
+      emptyMsg: "Nenhuma bateria registrada ainda. Resolva a de hoje e me conte o resultado."
+    });
+
+    var ultimo = recentes.length ? recentes[recentes.length - 1] : null;
+    var titulo = document.getElementById("hojeBlocosTitulo");
+    var tabela = document.getElementById("hojeBlocosTabela");
+    if (!ultimo) {
+      titulo.textContent = "Blocos de hoje";
+      tabela.innerHTML = emptyState("Assim que você me contar o resultado da bateria, os blocos aparecem aqui.");
+      return;
+    }
+    titulo.textContent = ultimo.date === d.meta.hoje ? "Blocos de hoje" : "Último registro: " + fmtDateShort(ultimo.date);
+    var rows = ultimo.blocks.map(function (b) {
+      return "<tr><td>" + esc(b.label) + "<br><span style=\"color:var(--ink-faint);font-size:11px\">" + esc(b.topic || "") + "</span></td>" +
+        '<td><span class="pct-pill ' + pctPillClass(b.pct, 70, 50) + '">' + b.acertos + "/" + b.total + " · " + Math.round(b.pct) + "%</span></td></tr>";
+    }).join("");
+    tabela.innerHTML = '<table class="data-table"><thead><tr><th>Tema</th><th>Resultado</th></tr></thead><tbody>' + rows + "</tbody></table>";
+  }
+
+  function renderSemana(d) {
+    var semanas = d.questoes.por_semana;
+    document.getElementById("chartSemanaVol").innerHTML = barChart(semanas, {
+      value: function (s) { return s.total; },
+      label: function (s) { return "S" + s.semana; },
+      colorFn: function (s) { return s.semana === d.meta.semana_atual ? "var(--accent)" : (s.total > 0 ? "var(--series-q)" : "var(--surface-2)"); },
+      emptyMsg: "Ainda sem questões registradas nas semanas."
+    });
+
+    document.getElementById("chartSemanaPct").innerHTML = lineChart(semanas, {
+      value: function (s) { return s.pct; },
+      label: function (s) { return "S" + s.semana; },
+      targets: [
+        { index: 6, value: 60, label: "checkpoint" },
+        { index: 7, value: 60, label: "meta S1" },
+        { index: 8, value: 70, label: "meta S2" }
+      ],
+      emptyMsg: "Ainda sem % de acerto suficiente por semana para traçar uma linha."
+    });
+
+    var atual = semanas.find(function (s) { return s.semana === d.meta.semana_atual; });
+    var cardHoras = document.getElementById("cardHoras");
+    if (!atual) {
+      cardHoras.innerHTML = "<h2>Horas de estudo</h2>" + emptyState("O plano ainda não começou — semana 1 começa em 21/09.");
+    } else if (atual.horas_feitas === null || atual.horas_feitas === undefined) {
+      cardHoras.innerHTML = "<h2>Horas de estudo · Semana " + atual.semana + "</h2>" +
+        '<div class="bullet-row"><div class="bullet-track"><div class="bullet-tick" style="left:100%"></div></div></div>' +
+        '<div class="pending-badge">Não informado — preencha em 02-plano/02-registro-semanal.md ou me conte no chat.</div>';
+    } else {
+      var pctH = Math.min(100, (atual.horas_feitas / 16) * 100);
+      cardHoras.innerHTML = "<h2>Horas de estudo · Semana " + atual.semana + "</h2>" +
+        '<div class="bullet-row"><div class="label-row"><span>' + atual.horas_feitas + "h de 16h</span><span>" + Math.round(pctH) + '%</span></div>' +
+        '<div class="bullet-track"><div class="bullet-fill" style="width:' + pctH + '%;background:' + statusColor(pctH, 80, 50) + '"></div>' +
+        '<div class="bullet-tick" style="left:100%"></div></div></div>';
+    }
+  }
+
+  function renderMes(d) {
+    var meses = d.questoes.por_mes;
+    function labelMes(m) { var p = m.mes.split("-"); return MESES[p[1]] + "/" + p[0].slice(2); }
+    document.getElementById("chartMesVol").innerHTML = barChart(meses, {
+      value: function (m) { return m.total; }, label: labelMes,
+      colorFn: function () { return "var(--series-q)"; },
+      emptyMsg: "Ainda sem questões registradas neste período."
+    });
+    document.getElementById("chartMesPct").innerHTML = barChart(meses, {
+      value: function (m) { return m.pct || 0; }, label: labelMes,
+      colorFn: function (m) { return statusColor(m.pct, 70, 50); },
+      valueLabel: function (v) { return Math.round(v) + "%"; },
+      emptyMsg: "Ainda sem % de acerto por mês."
+    });
+
+    var hist = d.cobertura.historico;
+    var elTend = document.getElementById("chartCoberturaTendencia");
+    if (hist.length < 2) {
+      var g = d.cobertura.geral;
+      elTend.innerHTML = barChart([{ k: "T", v: g.T, c: "var(--series-t)" }, { k: "Q", v: g.Q, c: "var(--series-q)" }, { k: "R", v: g.R, c: "var(--series-r)" }], {
+        value: function (x) { return x.v; }, label: function (x) { return x.k; },
+        colorFn: function (x) { return x.c; }, valueLabel: function (v) { return Math.round(v) + "%"; },
+        height: 140
+      }) + '<div class="hint" style="margin-top:6px">Instantâneo de hoje — a linha de tendência aparece com mais dias de histórico.</div>';
+    } else {
+      elTend.innerHTML = tripleLineChart(hist);
+    }
+  }
+
+  function tripleLineChart(hist) {
+    var W = 640, H = 190, padL = 8, padR = 8, padT = 16, padB = 26;
+    var innerW = W - padL - padR, innerH = H - padT - padB;
+    var n = hist.length, base = padT + innerH;
+    function xAt(i) { return n === 1 ? padL : padL + (i / (n - 1)) * innerW; }
+    function yAt(v) { return base - (v / 100) * innerH; }
+    var series = [["T", "var(--series-t)"], ["Q", "var(--series-q)"], ["R", "var(--series-r)"]];
+    var paths = "";
+    series.forEach(function (s) {
+      var d = hist.map(function (h, i) { return (i === 0 ? "M " : "L ") + xAt(i).toFixed(1) + " " + yAt(h[s[0]]).toFixed(1); }).join(" ");
+      paths += '<path d="' + d + '" fill="none" stroke="' + s[1] + '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
+      var lastI = n - 1;
+      paths += '<circle cx="' + xAt(lastI).toFixed(1) + '" cy="' + yAt(hist[lastI][s[0]]).toFixed(1) + '" r="3.5" fill="' + s[1] + '"/>';
+    });
+    var labels = "";
+    var step = Math.max(1, Math.ceil(n / 8));
+    for (var i = 0; i < n; i += step) {
+      labels += '<text x="' + xAt(i).toFixed(1) + '" y="' + (base + 16) + '" font-size="9.5" text-anchor="middle" fill="var(--ink-faint)">' + fmtDateShort(hist[i].date) + "</text>";
+    }
+    var axis = '<line x1="' + padL + '" x2="' + (W - padR) + '" y1="' + base + '" y2="' + base + '" stroke="var(--border)" stroke-width="1"/>';
+    return '<svg viewBox="0 0 ' + W + " " + H + '" role="img">' + axis + paths + labels + "</svg>";
+  }
+
+  function renderEdital(d) {
+    var displayOrder = ROMANOS.concat(["PT", "EN"]);
+    var blocks = displayOrder.map(function (code) {
+      return d.cobertura.por_bloco.find(function (b) { return b.bloco === code; });
+    }).filter(Boolean);
+    document.getElementById("chartEditalBlocos").innerHTML = editalBlocksChart(blocks);
+
+    document.getElementById("chartBlocosFracos").innerHTML = rankingChart(d.questoes.por_bloco_edital.slice(0, 5));
+
+    var elSim = document.getElementById("simuladosCards");
+    elSim.innerHTML = d.simulados.map(function (s) { return simuladoCard(s); }).join("");
+  }
+
+  function simuladoCard(s) {
+    var titulo = "Simulado " + s.numero + (s.data ? " · " + fmtDateShort(s.data) : "");
+    if (s.status !== "concluido") {
+      return '<div class="bullet-row"><div class="label-row"><span>' + esc(titulo) + '</span><span class="pending-badge">ainda não realizado</span></div>' +
+        '<div class="bullet-track"><div class="bullet-tick" style="left:' + (s.meta_especificos ? (s.meta_especificos / 50 * 100) : 0) + '%"></div></div>' +
+        '<div class="bullet-track"><div class="bullet-tick" style="left:' + (s.meta_gerais ? (s.meta_gerais / 20 * 100) : 0) + '%"></div></div></div>';
+    }
+    var pctEsp = (s.especificos / 50) * 100;
+    var gerais = (s.portugues || 0) + (s.ingles || 0);
+    var pctGer = (gerais / 20) * 100;
+    var warn = "";
+    if (s.portugues === 0 || s.ingles === 0) warn = '<div class="warn-note">⚠ zero em ' + (s.portugues === 0 ? "Português" : "Inglês") + " — elimina, independente do total</div>";
+    return '<div class="bullet-row"><div class="label-row"><span>' + esc(titulo) + "</span><span>Específicos " + s.especificos + "/50</span></div>" +
+      '<div class="bullet-track"><div class="bullet-fill" style="width:' + pctEsp + "%;background:" + statusColor(pctEsp, (s.meta_especificos / 50) * 100, 50) + '"></div>' +
+      '<div class="bullet-tick" style="left:' + (s.meta_especificos / 50 * 100) + '%"></div></div>' +
+      '<div class="label-row"><span></span><span>Gerais ' + gerais + "/20 (PT " + (s.portugues ?? "—") + " · EN " + (s.ingles ?? "—") + ")</span></div>" +
+      '<div class="bullet-track"><div class="bullet-fill" style="width:' + pctGer + "%;background:" + statusColor(pctGer, (s.meta_gerais / 20) * 100, 40) + '"></div>' +
+      '<div class="bullet-tick" style="left:' + (s.meta_gerais / 20 * 100) + '%"></div></div>' + warn + "</div>";
+  }
+
+  // ---------- tabs ----------
+  function initTabs() {
+    var btns = Array.prototype.slice.call(document.querySelectorAll(".tab-btn"));
+    var panels = Array.prototype.slice.call(document.querySelectorAll(".panel"));
+    var saved = "hoje";
+    try { saved = localStorage.getItem("sc_tab") || "hoje"; } catch (e) {}
+    function activate(tab) {
+      btns.forEach(function (b) { b.classList.toggle("active", b.dataset.tab === tab); });
+      panels.forEach(function (p) { p.hidden = p.dataset.panel !== tab; });
+      try { localStorage.setItem("sc_tab", tab); } catch (e) {}
+    }
+    btns.forEach(function (b) { b.addEventListener("click", function () { activate(b.dataset.tab); }); });
+    activate(btns.some(function (b) { return b.dataset.tab === saved; }) ? saved : "hoje");
+  }
+
+  var FALLBACK = {
+    meta: { gerado_em: new Date().toISOString().slice(0, 10), hoje: new Date().toISOString().slice(0, 10), prova: "2026-11-29", dias_para_prova: 0, semana_atual: 0, total_semanas: 10 },
+    cobertura: { geral: { itens_total: 95, T: 0, Q: 0, R: 0 }, por_bloco: [], historico: [] },
+    questoes: { total_resolvidas: 0, total_acertos: 0, pct_acerto_geral: null, por_dia: [], por_semana: [], por_mes: [], por_bloco_edital: [] },
+    streak: { atual: 0, recorde: 0 },
+    simulados: [],
+    risco_eliminacao: { zero_pt: false, zero_en: false, abaixo_corte_especificos: false, abaixo_corte_gerais: false }
+  };
+
+  initTabs();
+  fetch("dados.json").then(function (r) { return r.json(); }).then(render).catch(function () { render(FALLBACK); });
+})();
+</script>

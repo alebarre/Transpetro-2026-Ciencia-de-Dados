@@ -13,9 +13,10 @@
 | `01-edital/` | PDF oficial + conteúdo programático transcrito literalmente + regras da prova | Consultar sempre que houver dúvida sobre "isso cai?" |
 | `02-plano/01-plano-geral.md` | O plano inteiro: método de estudo + calendário dia a dia (21/09 → 29/11) num único arquivo | Abrir todo dia para ver o que fazer hoje |
 | `03-checklist/` | Todos os tópicos do edital com caixas Teoria / Questões / Revisão | Marcar ao final de cada sessão |
-| `04-questoes/` | Onde achar questões Cesgranrio + modelo de caderno de erros | Todo sábado (bloco de questões) |
+| `04-questoes/` | Onde achar questões Cesgranrio, modelo de caderno de erros, e `bateria-diaria/<data>/` (bateria do dia + resolução + resultado) | Todo dia (bateria) e todo sábado (bloco de questões) |
 | `05-revisao/` | Formulário rápido (fórmulas e conceitos que mais caem) + modelo de resumo | Revisão de 10 min no início de cada dia; reta final |
-| `06-simulados/` | Calendário e registro de simulados | Sábados das semanas 8, 9, 10, 11 |
+| `06-simulados/` | Calendário e registro de simulados | Sábados das semanas 8 e 9 |
+| `07-dashboard/` | Painel visual publicado (link em `LINK.md`) + script `aggregate.py` que gera `dados.json` a partir de tudo acima | Conferir progresso quando quiser; atualizado depois de cada bateria |
 
 ## Regras da prova que mudam a estratégia (fonte: Edital 04, itens 7.1.x)
 
