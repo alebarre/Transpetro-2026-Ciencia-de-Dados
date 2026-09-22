@@ -78,6 +78,76 @@ C) 3/10
 D) 1/5
 E) 3/5
 
+**11.** Um lote de 50 tanques de armazenamento é inspecionado, e constata-se que 8 apresentam algum sinal de vazamento. Um tanque é escolhido ao acaso para nova vistoria. Qual a probabilidade de que ele seja um dos tanques com vazamento?
+A) 8/50
+B) 4/25
+C) 1/6
+D) 8/42
+E) 21/25
+
+**12.** Em um espaço amostral S, sejam A e seu complementar Aᶜ. Se P(A) = 0,42, qual o valor de P(Aᶜ)?
+A) 0,42
+B) 0,58
+C) 1,42
+D) 0
+E) Não é possível determinar sem mais informações
+
+**13.** Numa unidade de refino, os eventos "parada não programada" (A) e "acionamento do sistema de emergência" (B) são mutuamente exclusivos, com P(A) = 0,25 e P(B) = 0,10. Qual a probabilidade de ocorrer ao menos um desses eventos?
+A) 0,025
+B) 0,35
+C) 0,15
+D) 0,40
+E) Não pode ser calculada com os dados dados
+
+**14.** Em uma planta petroquímica, a probabilidade de uma falha mecânica (M) é 0,5, de falha elétrica (E) é 0,3, e a probabilidade de ocorrerem as duas simultaneamente é 0,15. Qual a probabilidade de ocorrer pelo menos uma falha (mecânica ou elétrica)?
+A) 0,95
+B) 0,80
+C) 0,65
+D) 0,50
+E) 0,15
+
+**15.** A partir da definição de probabilidade condicional, P(A∩B), para P(B) > 0, pode ser reescrita como:
+A) P(A) + P(B)
+B) P(A|B) · P(B)
+C) P(A) / P(B|A)
+D) P(A∪B) − P(B)
+E) P(A) · P(B|A) + P(B)
+
+**16.** Numa amostra de 300 funcionários de uma unidade de refino, 180 são do turno diurno e 120 do turno noturno. Do total, 60 funcionários do turno diurno e 30 do turno noturno já sofreram algum incidente registrado. Escolhendo ao acaso um funcionário que sofreu incidente, qual a probabilidade de que ele seja do turno noturno?
+A) 1/3
+B) 2/3
+C) 1/10
+D) 30/300
+E) 2/9
+
+**17.** Considere um experimento aleatório com espaço amostral S. Assinale a alternativa que representa uma violação dos axiomas de probabilidade.
+A) P(A) = 0 para o evento impossível
+B) P(A) = −0,10 para algum evento A
+C) P(S) = 1
+D) P(A) + P(Aᶜ) = 1
+E) P(A) = 0,75 para algum evento A
+
+**18.** Se dois eventos A e B são independentes, com P(A) = 0,6 e P(B) = 0,25, qual o valor de P(A∩B)?
+A) 0,85
+B) 0,15
+C) 0,35
+D) 0,6
+E) Não pode ser determinado
+
+**19.** Se dois eventos A e B são independentes, é correto afirmar que:
+A) P(A|B) = P(B)
+B) P(A|B) = P(A)
+C) P(A∩B) = P(A) + P(B)
+D) P(A∪B) = P(A) · P(B)
+E) P(A|B) = 0
+
+**20.** Numa caixa há 12 cartões numerados de 1 a 12. Um cartão é retirado ao acaso. Sabendo que o número sorteado é múltiplo de 3, qual a probabilidade de que esse número também seja par?
+A) 1/3
+B) 1/2
+C) 1/4
+D) 2/3
+E) 1/6
+
 ---
 
 ## Bloco 2 — Português: compreensão de texto + estilo Cesgranrio
@@ -143,3 +213,73 @@ B) "Os vazamentos mesmo pequenos, podem gerar impactos ambientais."
 C) "Os vazamentos, mesmo pequenos, podem gerar impactos ambientais."
 D) "Os vazamentos mesmo, pequenos podem gerar impactos, ambientais."
 E) "Os vazamentos mesmo pequenos podem, gerar impactos ambientais."
+
+**9.** Quanto à tipologia textual predominante, o texto pode ser classificado como:
+A) Narrativo, por relatar uma sucessão de fatos históricos
+B) Descritivo, por apresentar características físicas de objetos
+C) Dissertativo-expositivo, por apresentar e explicar informações sobre um tema
+D) Injuntivo, por instruir o leitor sobre como agir em caso de vazamento
+E) Poético, por explorar a função estética da linguagem
+
+**10.** Considerando o texto como um todo, a ideia central defendida é a de que:
+A) A tecnologia, isoladamente, já é suficiente para garantir a segurança do transporte dutoviário
+B) A confiabilidade do sistema depende do equilíbrio entre inovação tecnológica e manutenção/qualificação humana
+C) O transporte rodoviário deveria substituir o dutoviário por ser mais seguro
+D) Os vazamentos são inevitáveis e não geram impactos relevantes
+E) A fiscalização humana tornou-se dispensável com a chegada dos sensores
+
+**11.** Assinale a alternativa em que a regência verbal está de acordo com a norma-padrão:
+A) "Os técnicos chegaram no local do vazamento em poucos minutos."
+B) "A equipe obedece as normas de segurança da refinaria."
+C) "O supervisor prefere dutos do que caminhões-tanque."
+D) "Os técnicos chegaram ao local do vazamento em poucos minutos."
+E) "A equipe visa o cargo de coordenador desde o ano passado."
+
+**12.** Assinale a alternativa em que a colocação pronominal está de acordo com a norma-padrão:
+A) "Não se identificou a causa do vazamento."
+B) "Não identificou-se a causa do vazamento."
+C) "Se identificou a causa do vazamento imediatamente."
+D) "Identificou-se-a a causa do vazamento no relatório."
+E) "A causa, se identificou, rapidamente pela equipe."
+
+**13.** Assinale a alternativa em que o emprego de "porque/por que/porquê/por quê" está de acordo com a norma-padrão:
+A) "Não sabemos por que o vazamento ocorreu."
+B) "Ninguém entende o por que da falha no sensor."
+C) "Explique-me porque você não reportou o incidente."
+D) "O vazamento ocorreu por que a válvula falhou."
+E) "Essa é a razão por quê o duto vazou."
+
+**14.** No trecho "a operação segura dessa infraestrutura exige monitoramento constante", o termo "constante" pode ser substituído, sem alteração de sentido, por:
+A) Eventual
+B) Ocasional
+C) Contínuo
+D) Raro
+E) Interrompido
+
+**15.** No texto, o conectivo "Entretanto" poderia ser substituído, sem prejuízo de sentido, por:
+A) Portanto
+B) Porém
+C) Porquanto
+D) Assim
+E) Logo
+
+**16.** Assinale a alternativa que apresenta ambiguidade:
+A) "Maria avisou Ana que ela seria transferida para outra unidade."
+B) "Maria avisou Ana sobre a própria transferência de Ana."
+C) "Maria informou o setor sobre a transferência da colega Ana."
+D) "Maria comunicou a decisão de transferência claramente à equipe."
+E) "Maria enviou o relatório sobre a transferência ao supervisor."
+
+**17.** A frase "Os técnicos instalaram os sensores de pressão" foi corretamente reescrita na voz passiva analítica em:
+A) "Os sensores de pressão foram instalados pelos técnicos."
+B) "Os sensores de pressão instalaram os técnicos."
+C) "Os técnicos foram instalados pelos sensores de pressão."
+D) "Os sensores de pressão se instalaram pelos técnicos."
+E) "Instalaram-se os técnicos pelos sensores de pressão."
+
+**18.** Assinale a alternativa em que o emprego de "onde"/"aonde" está de acordo com a norma-padrão:
+A) "A refinaria onde os sensores foram instalados fica no litoral."
+B) "Aonde fica a refinaria mencionada no relatório?"
+C) "Não sei onde vou depois do treinamento."
+D) "Ninguém sabe aonde fica o duto principal."
+E) "A cidade onde ele foi ontem é litorânea."

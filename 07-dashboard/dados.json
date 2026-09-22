@@ -1,17 +1,17 @@
 {
   "meta": {
-    "gerado_em": "2026-09-20",
-    "hoje": "2026-09-20",
+    "gerado_em": "2026-09-21",
+    "hoje": "2026-09-21",
     "prova": "2026-11-29",
-    "dias_para_prova": 70,
-    "semana_atual": 0,
+    "dias_para_prova": 69,
+    "semana_atual": 1,
     "total_semanas": 10
   },
   "cobertura": {
     "geral": {
       "itens_total": 95,
-      "T": 0.0,
-      "Q": 0.0,
+      "T": 9.5,
+      "Q": 1.1,
       "R": 0.0
     },
     "por_bloco": [
@@ -19,7 +19,7 @@
         "bloco": "PT",
         "nome": "Língua Portuguesa",
         "itens": 12,
-        "T": 0.0,
+        "T": 66.7,
         "Q": 0.0,
         "R": 0.0
       },
@@ -43,8 +43,8 @@
         "bloco": "II",
         "nome": "Probabilidade e Estatística",
         "itens": 14,
-        "T": 0.0,
-        "Q": 0.0,
+        "T": 7.1,
+        "Q": 7.1,
         "R": 0.0
       },
       {
@@ -134,23 +134,59 @@
         "T": 0.0,
         "Q": 0.0,
         "R": 0.0
+      },
+      {
+        "date": "2026-09-21",
+        "T": 9.5,
+        "Q": 1.1,
+        "R": 0.0
       }
     ]
   },
   "questoes": {
-    "total_resolvidas": 0,
-    "total_acertos": 0,
-    "pct_acerto_geral": null,
-    "por_dia": [],
+    "total_resolvidas": 38,
+    "total_acertos": 30,
+    "pct_acerto_geral": 78.9,
+    "por_dia": [
+      {
+        "date": "2026-09-21",
+        "type": "bateria",
+        "total": 38,
+        "acertos": 30,
+        "pct": 78.9,
+        "blocks": [
+          {
+            "label": "Probabilidade (II.1)",
+            "tema": [
+              "II"
+            ],
+            "topic": "Probabilidade: definições, axiomas, condicional",
+            "total": 20,
+            "acertos": 15,
+            "pct": 75.0
+          },
+          {
+            "label": "Português",
+            "tema": [
+              "PT"
+            ],
+            "topic": "Compreensão de texto + estilo Cesgranrio",
+            "total": 18,
+            "acertos": 15,
+            "pct": 83.3
+          }
+        ]
+      }
+    ],
     "por_semana": [
       {
         "semana": 1,
         "periodo": "21–27/09",
         "tema": "Fundamentos",
-        "total": 0,
-        "acertos": 0,
-        "pct": null,
-        "horas_feitas": null
+        "total": 38,
+        "acertos": 30,
+        "pct": 78.9,
+        "horas_feitas": 2.0
       },
       {
         "semana": 2,
@@ -234,12 +270,32 @@
         "horas_feitas": null
       }
     ],
-    "por_mes": [],
-    "por_bloco_edital": []
+    "por_mes": [
+      {
+        "mes": "2026-09",
+        "total": 38,
+        "acertos": 30,
+        "pct": 78.9
+      }
+    ],
+    "por_bloco_edital": [
+      {
+        "bloco": "II",
+        "total": 20,
+        "acertos": 15,
+        "pct": 75.0
+      },
+      {
+        "bloco": "PT",
+        "total": 18,
+        "acertos": 15,
+        "pct": 83.3
+      }
+    ]
   },
   "streak": {
-    "atual": 0,
-    "recorde": 0
+    "atual": 1,
+    "recorde": 1
   },
   "simulados": [
     {

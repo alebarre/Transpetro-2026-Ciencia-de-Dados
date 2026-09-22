@@ -1,7 +1,7 @@
 # Dashboard — link publicado
 
 **URL atual:** https://claude.ai/artifact/WKickXLWRrWUsGc5imHJd8
-**Última atualização:** 2026-09-20 (publicação inicial, dados zerados — plano começa em 21/09)
+**Última atualização:** 2026-09-21 (bateria do dia 1: Probabilidade 15/20, Português 15/18, 2h de estudo)
 
 O link é privado (só quem tem acesso à sua conta consegue abrir).
 

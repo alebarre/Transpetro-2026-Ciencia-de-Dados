@@ -4,7 +4,7 @@ Preencha no sábado à noite ou domingo. Duas linhas por semana: o que foi feito
 
 | Semana | Período | Horas feitas (/16) | Questões feitas | % acerto Específicos | % acerto PT | % acerto EN | Tópicos pendentes | Observação |
 |---|---|---|---|---|---|---|---|---|
-| 1 | 21–27/09 | | | | | | | |
+| 1 | 21–27/09 | 2 | 38 | 75% Prob. (15/20) | 83% (15/18) | | | |
 | 2 | 28/09–04/10 | | | | | | | |
 | 3 | 05–11/10 | | | | | | | |
 | 4 | 12–18/10 | | | | | | | |
